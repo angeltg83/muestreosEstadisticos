@@ -57,6 +57,7 @@ import "./App.scss";
 
 import {SimplePage} from "./pages/customs/simple/SimplePage";
 import {MuestreoSimplePage} from "./pages/customs/simple/MuestreoSimplePage";
+import {MuestreoSistematico} from "./pages/customs/simple/MuestreoSistematico";
 import {MuestreoEstratificado} from "./pages/customs/simple/MuestreoEstratificado";
 
 const App = () => {
@@ -223,12 +224,12 @@ const App = () => {
         {
             label: "Muestreo aleatorio",
             icon: "pi pi-briefcase",
-            // to: "/",
-            to: "/table",
+            to: "/",
+            // to: "/table",
             items: [
                 // { label: "Simple", icon: "pi pi-globe", to: "/muestreoSimple" },
                 { label: "Simple", icon: "pi pi-globe", to: "/muestreoSimple" },
-                { label: "Sistemico", icon: "pi pi-fw pi-clock", to: "/empty" },
+                { label: "Sistemático", icon: "pi pi-fw pi-clock", to: "/muestreoSistematico" },
                 { label: "Estratificado", icon: "pi pi-fw pi-chart-line", to: "/estratificado" },
             ],
             
@@ -329,6 +330,7 @@ const App = () => {
 
                 <Route path="/simple" component={SimplePage} />
                 <Route path="/muestreoSimple" component={MuestreoSimplePage} />
+                <Route path="/muestreoSistematico" component={MuestreoSistematico} />
                 <Route path="/sistemico" component={EmptyPage} />
                 <Route path="/estratificado" component={MuestreoEstratificado} />
 

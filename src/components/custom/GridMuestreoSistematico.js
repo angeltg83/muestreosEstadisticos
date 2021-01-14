@@ -21,11 +21,11 @@ import { InputText } from "primereact/inputtext";
 import { ProgressBar } from "primereact/progressbar";
 
 {
-    /* <FormMuestreoAleatorioSimple muestra={muestra} getNumAleatorio={getNumAleatorio} /> */
+    /* <GridMuestreoSistematico muestra={muestra} getNumAleatorio={getNumAleatorio} /> */
 }
-export const FormMuestreoAleatorioSimple = ({ muestra, getNumAleatorio, rowArr }) => {
+export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion }) => {
     
-    // rowArr={i} muestra={fin} getNumAleatorio={getNumAleatorio}
+    // setPoblacion={i} muestra={fin} getNumAleatorio={getNumAleatorio}
 
     const [customer1, setCustomer1] = useState(null);
     // const [customer2, setCustomer2] = useState(null);
@@ -43,7 +43,7 @@ export const FormMuestreoAleatorioSimple = ({ muestra, getNumAleatorio, rowArr }
 
     useEffect(() => {
         console.log("muestra en grid ", muestra);
-        console.log("entro form!!", rowArr);
+        console.log("entro form!!", setPoblacion);
 
         const customerService = new CustomerService();
         // const productService = new ProductService();
@@ -78,7 +78,7 @@ export const FormMuestreoAleatorioSimple = ({ muestra, getNumAleatorio, rowArr }
                 }
             }
             setCustomer1(arrIdPoblacion);
-
+            setPoblacion(arrIdPoblacion)
             setLoading1(false);
         });
         customerService.getCustomersLarge().then((data) => {
