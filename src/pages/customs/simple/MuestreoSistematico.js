@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { GridMuestreoSistematico } from "../../../components/custom/GridMuestreoSistematico";
+import { GridMuestreoSistematicoResult } from "../../../components/custom/GridMuestreoSistematicoResult";
+
 // import { FormCalculoMuestra } from "../../../components/custom/FormCalculoMuestra";
 import { FormCalculoSistematico } from "../../../components/custom/FormCalculoSistematico";
 
@@ -39,12 +41,11 @@ export const MuestreoSistematico = ({ botonProcesar = true, muestraUni = 0 }) =>
         }
 
         console.log("\n\n\nnuevoArrPoblacion ", nuevoArrPoblacion);
-        if(nuevoArrPoblacion.length>0 && typeof nuevoArrPoblacion[0]!=="undefined"  ){
-            console.log("LLLLLL")
+        if (nuevoArrPoblacion.length > 0 && typeof nuevoArrPoblacion[0] !== "undefined") {
+            console.log("LLLLLL");
             setNuevaArrPoblacion(nuevoArrPoblacion);
-        }else{
+        } else {
             setNuevaArrPoblacion([]);
-
         }
     }, [arrPoblacion, n, k, a]);
 
@@ -73,9 +74,9 @@ export const MuestreoSistematico = ({ botonProcesar = true, muestraUni = 0 }) =>
                     <FormCalculoSistematico tipo="finita" setA={setA} setN={setN} setK={setK} setMuestra={setMuestra} botonProcesar={botonProcesar} />
                 </div>
             </div>
-            
+
             <GridMuestreoSistematico muestra={muestra} n={n} k={k} setPoblacion={setPoblacion} getNumAleatorio={getNumAleatorio} />
-            {nuevaArrPoblacion.length>0 ? <GridMuestreoSistematico muestra={muestra} n={n} k={k} setPoblacion={setPoblacion} nuevaArrPoblacion={nuevaArrPoblacion} getNumAleatorio={getNumAleatorio} /> : ""}
+            {nuevaArrPoblacion.length > 0 ? <GridMuestreoSistematicoResult nuevaArrPoblacion={nuevaArrPoblacion} /> : ""}
         </>
     );
 };

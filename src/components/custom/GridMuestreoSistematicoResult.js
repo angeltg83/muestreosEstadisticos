@@ -23,78 +23,85 @@ import { ProgressBar } from "primereact/progressbar";
 {
     /* <GridMuestreoSistematico muestra={muestra} getNumAleatorio={getNumAleatorio} /> */
 }
-export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion, nuevaArrPoblacion = [] }) => {
+export const GridMuestreoSistematicoResult = ({ nuevaArrPoblacion = [] }) => {
     // setPoblacion={i} muestra={fin} getNumAleatorio={getNumAleatorio}
-    const [customer1, setCustomer1] = useState();
+
+    console.log("nuevaArrPoblacion ))))8", nuevaArrPoblacion);
+
+    const [customer1, setCustomer1] = useState(nuevaArrPoblacion);
     // const [customer2, setCustomer2] = useState(null);
     // const [customer3, setCustomer3] = useState(null);
     const [selectedCustomers1, setSelectedCustomers1] = useState(null);
     // const [selectedCustomers2, setSelectedCustomers2] = useState(null);
     // const [globalFilter1, setGlobalFilter1] = useState("");
     // const [globalFilter2, setGlobalFilter2] = useState("");
-    const [loading1, setLoading1] = useState(true);
+    const [loading1, setLoading1] = useState(false);
     // const [loading2, setLoading2] = useState(true);
     // const [products, setProducts] = useState(null);
     // const [expandedRows, setExpandedRows] = useState([]);
     // const toast = useRef(null);
     const [idPoblacion, setIdPoblacion] = useState(0);
-    
+
     useEffect(() => {
-        console.log("muestra en grid ", muestra);
-        console.log("entro form!!", setPoblacion);
-      
-        const customerService = new CustomerService();
-        // const productService = new ProductService();
-        // productService.getProductsWithOrdersSmall().then((data) => setProducts(data));
-        customerService.getCustomersMedium().then((data) => {
-            console.log("000 ", data[0]);
+        console.log(nuevaArrPoblacion.length);
+        setCustomer1(nuevaArrPoblacion);
+    }, [nuevaArrPoblacion]);
 
-            const { arrAleatorios } = getNumAleatorio(muestra, data[0].id, data[data.length - 1].id); //toda la poblacion...
-            //  arrAleatorios.push({ num: i + inicio });
+    //     useEffect(() => {
+    //         console.log("muestra en grid ", muestra);
+    //         console.log("entro form!!", setPoblacion);
 
-            let tempData = [];
-            // var idPoblacion = 0;
-            // var idPob = 0;
-            for (let x of arrAleatorios) {
-                for (let y of data) {
-                    if (typeof y.id !== "undefined" && y.id === x.num) {
-                        tempData.push(y);
-                    }
-                }
-            }
-            console.log("fin ", tempData.length);
-            // console.log("idPoblacion ", idPoblacion);
-            // console.log("arr  ", tempData);
-            // setCustomer1(data);
+    //         const customerService = new CustomerService();
+    //         // const productService = new ProductService();
+    //         // productService.getProductsWithOrdersSmall().then((data) => setProducts(data));
+    //         customerService.getCustomersMedium().then((data) => {
+    //             console.log("000 ", data[0]);
 
-            let arrIdPoblacion = [];
-            if (tempData.length > 0) {
-                let indexPoblacion = 1;
-                for (let x in tempData) {
-                    // console.log("indexPoblacion", indexPoblacion);
-                    arrIdPoblacion.push({ indexPoblacion: indexPoblacion++, ...tempData[x] });
-                }
-            }
-console.log("aqui.111")
-            if (nuevaArrPoblacion.length > 0) {
-console.log("aqui.222")
-setCustomer1(nuevaArrPoblacion);
-                setPoblacion(arrIdPoblacion);
+    //             const { arrAleatorios } = getNumAleatorio(muestra, data[0].id, data[data.length - 1].id); //toda la poblacion...
+    //             //  arrAleatorios.push({ num: i + inicio });
 
-            } else { 
-                setCustomer1(arrIdPoblacion);
-                setPoblacion(arrIdPoblacion);
-            }
+    //             let tempData = [];
+    //             // var idPoblacion = 0;
+    //             // var idPob = 0;
+    //             for (let x of arrAleatorios) {
+    //                 for (let y of data) {
+    //                     if (typeof y.id !== "undefined" && y.id === x.num) {
+    //                         tempData.push(y);
+    //                     }
+    //                 }
+    //             }
+    //             console.log("fin ", tempData.length);
+    //             // console.log("idPoblacion ", idPoblacion);
+    //             // console.log("arr  ", tempData);
+    //             // setCustomer1(data);
 
-           
-            setLoading1(false);
-        });
-        customerService.getCustomersLarge().then((data) => {
-            // setCustomer2(data);
-            // setLoading2(false);
-        });
-        // customerService.getCustomersMedium().then((data) => setCustomer3(data));
-    }, [muestra]);
+    //             let arrIdPoblacion = [];
+    //             if (tempData.length > 0) {
+    //                 let indexPoblacion = 1;
+    //                 for (let x in tempData) {
+    //                     // console.log("indexPoblacion", indexPoblacion);
+    //                     arrIdPoblacion.push({ indexPoblacion: indexPoblacion++, ...tempData[x] });
+    //                 }
+    //             }
+    // console.log("aqui.111")
+    //             if (nuevaArrPoblacion.length > 0) {
+    // console.log("aqui.222")
+    // setCustomer1(nuevaArrPoblacion);
+    //                 setPoblacion(arrIdPoblacion);
+
+    //             } else {
+    //                 setCustomer1(arrIdPoblacion);
+    //                 setPoblacion(arrIdPoblacion);
+    //             }
+
+    //             setLoading1(false);
+    //         });
+    //         customerService.getCustomersLarge().then((data) => {
+    //             // setCustomer2(data);
+    //             // setLoading2(false);
+    //         });
+    //         // customerService.getCustomersMedium().then((data) => setCustomer3(data));
+    //     }, [muestra]);
     const nameBodyTemplate = (data) => {
         return (
             <>
@@ -112,19 +119,24 @@ setCustomer1(nuevaArrPoblacion);
             </>
         );
     };
-
+    const estiloSpan={
+        fontSize:"13px",
+        fontWeight:"bolder"
+    }
     return (
         <>
             <div className="p-grid table-demo">
                 <div className="p-col-12">
                     <div className="card">
-                        <h5>Listado asesores comerciales</h5>
+                        {/* <h5>Listado resultante </h5> */}
+                        <span style={estiloSpan} >Registros encontrados: {nuevaArrPoblacion.length}</span>
+                        <hr/>
                         {/* <p>Pagination, sorting, filtering and checkbox selection.</p> */}
                         <DataTable
                             value={customer1}
                             paginator
                             className="p-datatable-customers p-datatable-responsive"
-                            rows={3}
+                            rows={10}
                             dataKey="id"
                             rowHover
                             selection={selectedCustomers1}
