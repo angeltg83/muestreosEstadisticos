@@ -23,10 +23,9 @@ import { ProgressBar } from "primereact/progressbar";
 {
     /* <GridMuestreoSistematico muestra={muestra} getNumAleatorio={getNumAleatorio} /> */
 }
-export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion }) => {
-    
+export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion, nuevaArrPoblacion = [] }) => {
     // setPoblacion={i} muestra={fin} getNumAleatorio={getNumAleatorio}
-
+console.log("AAAAAAAA ",nuevaArrPoblacion)
     const [customer1, setCustomer1] = useState(null);
     // const [customer2, setCustomer2] = useState(null);
     // const [customer3, setCustomer3] = useState(null);
@@ -77,8 +76,23 @@ export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion
                     arrIdPoblacion.push({ indexPoblacion: indexPoblacion++, ...tempData[x] });
                 }
             }
-            setCustomer1(arrIdPoblacion);
-            setPoblacion(arrIdPoblacion)
+
+            if(nuevaArrPoblacion.length>0){
+                setCustomer1(nuevaArrPoblacion);
+
+            }else{
+                setCustomer1(arrIdPoblacion);
+                setPoblacion(arrIdPoblacion);
+
+            }
+
+
+
+            // console.log("\n\n\narrPoblacion ", arrPoblacion);
+            // if (arrPoblacion.length > 0) {
+            //     setCustomer1(arrPoblacion);
+            // }
+
             setLoading1(false);
         });
         customerService.getCustomersLarge().then((data) => {
@@ -95,7 +109,7 @@ export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion
             </>
         );
     };
-  
+
     const dateBodyTemplate = (data) => {
         return (
             <>
@@ -104,8 +118,6 @@ export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion
             </>
         );
     };
-
-  
 
     return (
         <>
