@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // // import { Dialog } from "primereact/dialog";
 // import { Button } from "primereact/button";
 // import { InputText } from "primereact/inputtext";
@@ -12,21 +12,11 @@ import React, { useState, useRef, useEffect } from "react";
 
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { Rating } from "primereact/rating";
-import { Button } from "primereact/button";
-import { Toast } from "primereact/toast";
-import { ProductService } from "../../service/ProductService";
-import { CustomerService } from "../../service/CustomerService";
-import { InputText } from "primereact/inputtext";
-import { ProgressBar } from "primereact/progressbar";
 
-{
-    /* <GridMuestreoSistematico muestra={muestra} getNumAleatorio={getNumAleatorio} /> */
-}
 export const GridMuestreoSistematicoResult = ({ nuevaArrPoblacion = [] }) => {
     // setPoblacion={i} muestra={fin} getNumAleatorio={getNumAleatorio}
 
-    console.log("nuevaArrPoblacion ))))8", nuevaArrPoblacion);
+    // console.log("nuevaArrPoblacion ))))8", nuevaArrPoblacion);
 
     const [customer1, setCustomer1] = useState(nuevaArrPoblacion);
     // const [customer2, setCustomer2] = useState(null);
@@ -40,7 +30,7 @@ export const GridMuestreoSistematicoResult = ({ nuevaArrPoblacion = [] }) => {
     // const [products, setProducts] = useState(null);
     // const [expandedRows, setExpandedRows] = useState([]);
     // const toast = useRef(null);
-    const [idPoblacion, setIdPoblacion] = useState(0);
+    // const [idPoblacion, setIdPoblacion] = useState(0);
 
     useEffect(() => {
         console.log(nuevaArrPoblacion.length);

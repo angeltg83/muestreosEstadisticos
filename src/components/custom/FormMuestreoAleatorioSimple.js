@@ -25,38 +25,21 @@ import { ProgressBar } from "primereact/progressbar";
 }
 export const FormMuestreoAleatorioSimple = ({ muestra, getNumAleatorio, rowArr }) => {
     
-    // rowArr={i} muestra={fin} getNumAleatorio={getNumAleatorio}
-
     const [customer1, setCustomer1] = useState(null);
-    // const [customer2, setCustomer2] = useState(null);
-    // const [customer3, setCustomer3] = useState(null);
     const [selectedCustomers1, setSelectedCustomers1] = useState(null);
-    // const [selectedCustomers2, setSelectedCustomers2] = useState(null);
-    // const [globalFilter1, setGlobalFilter1] = useState("");
-    // const [globalFilter2, setGlobalFilter2] = useState("");
     const [loading1, setLoading1] = useState(true);
-    // const [loading2, setLoading2] = useState(true);
-    // const [products, setProducts] = useState(null);
-    // const [expandedRows, setExpandedRows] = useState([]);
-    // const toast = useRef(null);
-    const [idPoblacion, setIdPoblacion] = useState(0);
+    // const [idPoblacion, setIdPoblacion] = useState(0);
 
     useEffect(() => {
-        console.log("muestra en grid ", muestra);
-        console.log("entro form!!", rowArr);
+        // console.log("muestra en grid ", muestra);
+        // console.log("entro form!!", rowArr);
 
         const customerService = new CustomerService();
-        // const productService = new ProductService();
-        // productService.getProductsWithOrdersSmall().then((data) => setProducts(data));
         customerService.getCustomersMedium().then((data) => {
-            console.log("000 ", data[0]);
+            // console.log("000 ", data[0]);
 
             const { arrAleatorios } = getNumAleatorio(muestra, data[0].id, data[data.length - 1].id); //toda la poblacion...
-            //  arrAleatorios.push({ num: i + inicio });
-
             let tempData = [];
-            // var idPoblacion = 0;
-            // var idPob = 0;
             for (let x of arrAleatorios) {
                 for (let y of data) {
                     if (typeof y.id !== "undefined" && y.id === x.num) {
@@ -65,15 +48,11 @@ export const FormMuestreoAleatorioSimple = ({ muestra, getNumAleatorio, rowArr }
                 }
             }
             console.log("fin ", tempData.length);
-            // console.log("idPoblacion ", idPoblacion);
-            // console.log("arr  ", tempData);
-            // setCustomer1(data);
 
             let arrIdPoblacion = [];
             if (tempData.length > 0) {
                 let indexPoblacion = 1;
                 for (let x in tempData) {
-                    // console.log("indexPoblacion", indexPoblacion);
                     arrIdPoblacion.push({ indexPoblacion: indexPoblacion++, ...tempData[x] });
                 }
             }
@@ -81,11 +60,6 @@ export const FormMuestreoAleatorioSimple = ({ muestra, getNumAleatorio, rowArr }
 
             setLoading1(false);
         });
-        customerService.getCustomersLarge().then((data) => {
-            // setCustomer2(data);
-            // setLoading2(false);
-        });
-        // customerService.getCustomersMedium().then((data) => setCustomer3(data));
     }, [muestra]);
     const nameBodyTemplate = (data) => {
         return (

@@ -81,40 +81,10 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
             console.log("e.target.id **** ", e.target.id);
             setValueUniverso(e.target.value);
 
-            // if (isNaN(e.target.value)) {
-            //     console.log("No es un num");
-            //     setHasValueTamanoUniverso("El campo debe ser númerico");
-            // } else {
-            //     console.log("e.target.value ----->", e.target.value);
-            //     if (e.target.value > 0) {
-            //         setValueUniverso(e.target.value);
-
-            //         setHasValueTamanoUniverso("");
-            //         setMuestra(valueUniverso);
-            //     } else {
-            //         setHasValueTamanoUniverso("Tamaño de la población debe ser mayor a 0");
-            //     }
-            // }
         }
     };
 
-    // const handleChangeFinita = (e) => {
-    //     if (e.target.id === "valueTamanoUniverso") {
-    //         setValueUniverso(e.target.value);
-    //     }
-
-    //     if (e.target.id === "valueErr") {
-    //         setValueErr(e.target.value);
-    //     }
-
-    //     if (e.target.id === "valueP") {
-    //         setValueP(e.target.value);
-    //     }
-
-    //     if (e.target.id === "valueQ") {
-    //         setValueQ(e.target.value);
-    //     }
-    // };
+   
     const handleDropChange = (e) => {
         console.log("handleDropChange", e.target);
         if (e.target.id !== "dropdownValueErrorMaximo") {
@@ -125,11 +95,7 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
         }
     };
 
-    // const handleDropChangeFinita = (e) => {
-    //     // console.log("handleDropChange XX ", e.target.value);
-    //     setDropdownValueFinita(e.target.value);
-    // };
-
+ 
     const handleSubmit = () => {
         if (tipo !== "infinita") {
             calculoMuestrafinita();
@@ -204,12 +170,6 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
             }
         }
 
-        // if (isNaN(valueQ)) {
-        //     console.log("No es un num");
-        //     setHasValueErrQ("El campo debe ser númerico");
-        // } else {
-        //     setHasValueErrQ("");
-        // }
         if (tipo === "finita") {
             // console.log("valueUniverso ----->", valueUniverso);
             if (isNaN(valueUniverso)) {
@@ -234,7 +194,7 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
                     {tipo === "finita" ? (
                         <div className="p-field p-col-12 p-md-6">
                             <label htmlFor="tamanoUniverso">Tamaño de la población o universo [N]</label>
-                            <InputText id="valueUniverso" type="text" onBlur={handleBlur} onChange={handleChange} />
+                            <InputText id="valueUniverso" type="text" autoComplete="off" onBlur={handleBlur} onChange={handleChange} />
                             <span style={styleCustomErr}>{hasValueTamanoUniverso}</span>
                         </div>
                     ) : (
@@ -242,12 +202,12 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
                     )}
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="name1">Nivel de confianza [Z]</label>
-                        <Dropdown id="dropdownValue" value={dropdownValue} onChange={handleDropChange} options={dropdownValues} optionLabel="name" placeholder="Seleccione nivel de confianza" />
+                        <Dropdown id="dropdownValue" value={dropdownValue}  autoComplete="off" onChange={handleDropChange} options={dropdownValues} optionLabel="name" placeholder="Seleccione nivel de confianza" />
                     </div>
 
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="prob[Q]">Probabilidad de que ocurra el evento [P]</label>
-                        <InputText id="valueP" type="text" autoComplete="false" onBlur={handleBlur} onChange={handleChange} />
+                        <InputText id="valueP" type="text" autoComplete="off" onBlur={handleBlur} onChange={handleChange} />
                         <span style={styleCustomErr}>{hasValueErrP}</span>
                     </div>
 

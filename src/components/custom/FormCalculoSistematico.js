@@ -98,7 +98,7 @@ export const FormCalculoSistematico = ({ tipo = "infinita", setMuestra, setN, se
                 <div className="p-fluid p-formgrid p-grid">
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="tamanoUniverso">Tamaño de la población o universo [N]</label>
-                        <InputText id="valueUniverso" onBlur={handleBlur} onChange={handleChange} type="text" />
+                        <InputText id="valueUniverso" autoComplete='off' onBlur={handleBlur} onChange={handleChange} type="text" />
                         <span style={styleCustomErr}>{hasValueTamanoUniverso}</span>
                     </div>
 
@@ -109,11 +109,11 @@ export const FormCalculoSistematico = ({ tipo = "infinita", setMuestra, setN, se
                     </div>
 
                     <div className="p-field p-col-12 p-md-6">
-                        <label htmlFor="prob[Q]">[K]</label>
+                        <label htmlFor="prob[Q]">Intervalo [K]</label>
                         <InputText id="valueK" type="text" value={valorK} readOnly autoComplete="off" />
                     </div>
                     <div className="p-field p-col-12 p-md-6">
-                        <label htmlFor="prob[Q]">[A]</label>
+                        <label htmlFor="prob[Q]">Punto partida [A]</label>
                         <InputText id="valueA" value={valorA} type="text" readOnly autoComplete="off" />
                     </div>
                     <Button type="button" label="Procesar" onClick={handleSubmit} icon="pi pi-check" className="p-button-success" />

@@ -115,10 +115,10 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
                     {key === arrayEstratos.length - 1 ? (
                         <div key={i.id}>
                             {/* autoFocus={true} */}
-                            <InputText key={key} id={i.id} type="text" autoComplete="false" readOnly value={valueUniverso - acumTotal} />
+                            <InputText key={key} id={i.id} type="text" autoComplete="off" readOnly value={valueUniverso - acumTotal} />
                         </div>
                     ) : (
-                        <InputText key={key} id={i.id} autoComplete='off' type="text" autoComplete="false" onChange={handleChangeArray} />
+                        <InputText key={key} id={i.id} autoComplete='off' type="text" autoComplete="off" onChange={handleChangeArray} />
                     )}
                 </div>
             );
