@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-// import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-
 import { FormMuestreoAleatorioSimple } from "../../components/custom/FormMuestreoAleatorioSimple";
 
 export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
@@ -15,21 +13,14 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     const [hasValueTamanoUniverso, setHasValueTamanoUniverso] = useState("");
     const [callMuestreoSimple, setCallMuestreoSimple] = useState(false);
     const handleChange = (e) => {
-        // console.log("name ", e.target.id);
-        // console.log("input", e.target.value);
-        // console.log("aaaaaaaaa");
-
-        if (e.target.id === "valueNumEstratos") {
+             if (e.target.id === "valueNumEstratos") {
             console.log("e.target.value ",e.target.value)
             if (parseInt(e.target.value) > 0) {
                 setValueNumEstratos(e.target.value);
             }
         }
 
-        // if (e.target.id === "valueQ") {
-        //     setValueQ(e.target.value);
-        // }
-
+      
         if (e.target.id === "valueUniverso") {
             console.log("e.target.id **** ", e.target.id);
             setValueUniverso(e.target.value);
@@ -82,11 +73,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     };
 
     const handleChangeArray = (e) => {
-        // console.log("event oooo ", e.target.value);
-        // console.log("event oooo valueNumEstratos ", valueNumEstratos);
-        // console.log("valueUniverso ", valueUniverso);
-
-        // console.log("e.target.id ", e.target.id);
+       
         let acTotal = 0;
 
         for (let r of arrayEstratos) {
@@ -103,11 +90,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
         console.log("acum ", arrayEstratos);
         setAcumTotal(acTotal);
     };
-    // const getValuesArr = (e) => {
-    //     console.log("ssss", arrayEstratos);
-    // };
-
-    const getInputs = () => {
+      const getInputs = () => {
         let rows = [];
         arrayEstratos.map((i, key) => {
             rows.push(

@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-// import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
-// import { Sidebar } from "primereact/sidebar";
-// import { Toast } from "primereact/toast";
-// import { Column } from "primereact/column";
-// import { DataTable } from "primereact/datatable";
-// import { OverlayPanel } from "primereact/overlaypanel";
-// import { ProductService } from '../service/ProductService';
+
 
 export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesar }) => {
     const [dropdownValue, setDropdownValue] = useState(null);
@@ -17,7 +11,7 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
     const [valueUniverso, setValueUniverso] = useState(0);
     const [valueP, setValueP] = useState(0);
     const [valueErr, setValueErr] = useState("");
-    const [hasValueErr, setHasValueErr] = useState("");
+    const [, setHasValueErr] = useState("");
     const [hasValueErrP, setHasValueErrP] = useState("");
     // const [hasValueErrQ, setHasValueErrQ] = useState("");
     const [hasValueTamanoUniverso, setHasValueTamanoUniverso] = useState("");
@@ -213,7 +207,9 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
 
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="prob[Q]">Probabilidad de que no ocurra el evento [Q]</label>
-                        <p style={styleProbQ}>{valueQ}</p>
+                        {/* <p style={styleProbQ}>{valueQ}</p> */}
+                        <InputText id="valueUniverso" type="text" autoComplete="off" value={valueQ} readOnly  />
+
                     </div>
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="name1">Error máximo</label>

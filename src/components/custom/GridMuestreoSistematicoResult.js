@@ -1,97 +1,17 @@
 import React, { useState, useEffect } from "react";
-// // import { Dialog } from "primereact/dialog";
-// import { Button } from "primereact/button";
-// import { InputText } from "primereact/inputtext";
-// import { Dropdown } from "primereact/dropdown";
-// // import { Sidebar } from "primereact/sidebar";
-// // import { Toast } from "primereact/toast";
-// // import { Column } from "primereact/column";
-// // import { DataTable } from "primereact/datatable";
-// // import { OverlayPanel } from "primereact/overlaypanel";
-// // import { ProductService } from '../service/ProductService';
-
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
 export const GridMuestreoSistematicoResult = ({ nuevaArrPoblacion = [] }) => {
-    // setPoblacion={i} muestra={fin} getNumAleatorio={getNumAleatorio}
-
-    // console.log("nuevaArrPoblacion ))))8", nuevaArrPoblacion);
-
     const [customer1, setCustomer1] = useState(nuevaArrPoblacion);
-    // const [customer2, setCustomer2] = useState(null);
-    // const [customer3, setCustomer3] = useState(null);
     const [selectedCustomers1, setSelectedCustomers1] = useState(null);
-    // const [selectedCustomers2, setSelectedCustomers2] = useState(null);
-    // const [globalFilter1, setGlobalFilter1] = useState("");
-    // const [globalFilter2, setGlobalFilter2] = useState("");
-    const [loading1, setLoading1] = useState(false);
-    // const [loading2, setLoading2] = useState(true);
-    // const [products, setProducts] = useState(null);
-    // const [expandedRows, setExpandedRows] = useState([]);
-    // const toast = useRef(null);
-    // const [idPoblacion, setIdPoblacion] = useState(0);
+    const [loading1] = useState(false);
 
     useEffect(() => {
         console.log(nuevaArrPoblacion.length);
         setCustomer1(nuevaArrPoblacion);
     }, [nuevaArrPoblacion]);
 
-    //     useEffect(() => {
-    //         console.log("muestra en grid ", muestra);
-    //         console.log("entro form!!", setPoblacion);
-
-    //         const customerService = new CustomerService();
-    //         // const productService = new ProductService();
-    //         // productService.getProductsWithOrdersSmall().then((data) => setProducts(data));
-    //         customerService.getCustomersMedium().then((data) => {
-    //             console.log("000 ", data[0]);
-
-    //             const { arrAleatorios } = getNumAleatorio(muestra, data[0].id, data[data.length - 1].id); //toda la poblacion...
-    //             //  arrAleatorios.push({ num: i + inicio });
-
-    //             let tempData = [];
-    //             // var idPoblacion = 0;
-    //             // var idPob = 0;
-    //             for (let x of arrAleatorios) {
-    //                 for (let y of data) {
-    //                     if (typeof y.id !== "undefined" && y.id === x.num) {
-    //                         tempData.push(y);
-    //                     }
-    //                 }
-    //             }
-    //             console.log("fin ", tempData.length);
-    //             // console.log("idPoblacion ", idPoblacion);
-    //             // console.log("arr  ", tempData);
-    //             // setCustomer1(data);
-
-    //             let arrIdPoblacion = [];
-    //             if (tempData.length > 0) {
-    //                 let indexPoblacion = 1;
-    //                 for (let x in tempData) {
-    //                     // console.log("indexPoblacion", indexPoblacion);
-    //                     arrIdPoblacion.push({ indexPoblacion: indexPoblacion++, ...tempData[x] });
-    //                 }
-    //             }
-    // console.log("aqui.111")
-    //             if (nuevaArrPoblacion.length > 0) {
-    // console.log("aqui.222")
-    // setCustomer1(nuevaArrPoblacion);
-    //                 setPoblacion(arrIdPoblacion);
-
-    //             } else {
-    //                 setCustomer1(arrIdPoblacion);
-    //                 setPoblacion(arrIdPoblacion);
-    //             }
-
-    //             setLoading1(false);
-    //         });
-    //         customerService.getCustomersLarge().then((data) => {
-    //             // setCustomer2(data);
-    //             // setLoading2(false);
-    //         });
-    //         // customerService.getCustomersMedium().then((data) => setCustomer3(data));
-    //     }, [muestra]);
     const nameBodyTemplate = (data) => {
         return (
             <>
@@ -109,19 +29,17 @@ export const GridMuestreoSistematicoResult = ({ nuevaArrPoblacion = [] }) => {
             </>
         );
     };
-    const estiloSpan={
-        fontSize:"13px",
-        fontWeight:"bolder"
-    }
+    const estiloSpan = {
+        fontSize: "13px",
+        fontWeight: "bolder",
+    };
     return (
         <>
             <div className="p-grid table-demo">
                 <div className="p-col-12">
                     <div className="card">
-                        {/* <h5>Listado resultante </h5> */}
-                        <span style={estiloSpan} >Registros encontrados: {nuevaArrPoblacion.length}</span>
-                        <hr/>
-                        {/* <p>Pagination, sorting, filtering and checkbox selection.</p> */}
+                        <span style={estiloSpan}>Registros encontrados: {nuevaArrPoblacion.length}</span>
+                        <hr />
                         <DataTable
                             value={customer1}
                             paginator
@@ -134,20 +52,12 @@ export const GridMuestreoSistematicoResult = ({ nuevaArrPoblacion = [] }) => {
                             // globalFilter={globalFilter1}
                             emptyMessage="No hay registros encontrados"
                             loading={loading1}
-                            // header={customer1TableHeader}
-                            // body={representativeBodyTemplate}
                         >
-                            {/* body={countryBodyTemplate} */}
                             <Column field="indexPoblacion" sortable header="Población"></Column>
                             <Column field="id" sortable header="id"></Column>
                             <Column field="name" header="Nombre" body={nameBodyTemplate}></Column>
                             <Column field="country.name" header="Ciudad" sortable></Column>
                             <Column field="date" header="Montos ventas" sortable body={dateBodyTemplate}></Column>
-                            {/* <Column field="representative.name" header="Asesor comercial" ></Column> */}
-                            {/* <Column selectionMode="multiple" headerStyle={{ width: "3em" }}></Column> */}
-                            {/* <Column field="status" header="Status" sortable body={statusBodyTemplate}></Column> */}
-                            {/* <Column field="activity" header="Activity" sortable body={activityBody}></Column> */}
-                            {/* <Column headerStyle={{ width: "8rem", textAlign: "center" }} bodyStyle={{ textAlign: "center", overflow: "visible" }} body={actionTemplate}></Column> */}
                         </DataTable>
                     </div>
                 </div>

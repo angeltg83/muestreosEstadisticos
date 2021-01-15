@@ -1,54 +1,37 @@
 import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
-// import { Sidebar } from "primereact/sidebar";
-// import { Toast } from "primereact/toast";
-// import { Dialog } from "primereact/dialog";
-// import { Column } from "primereact/column";
-// import { DataTable } from "primereact/datatable";
-// import { OverlayPanel } from "primereact/overlaypanel";
-// import { ProductService } from '../service/ProductService';
+// import { Dropdown } from "primereact/dropdown";
 
-export const FormCalculoSistematico = ({ tipo = "infinita", setMuestra, setN, setK, setA }) => {
-    const [dropdownValue, setDropdownValue] = useState(null);
-    const [dropdownValueErrorMaximo, setDropdownValueErrorMaximo] = useState(null);
+
+export const FormCalculoSistematico = ({setMuestra, setN, setK, setA }) => {
+    // const [dropdownValue, setDropdownValue] = useState(null);
+    // const [dropdownValueErrorMaximo, setDropdownValueErrorMaximo] = useState(null);
 
     const [valueUniverso, setValueUniverso] = useState(0);
     const [valueP, setValueP] = useState(0);
 
-    const [valueErr, setValueErr] = useState("");
-    const [hasValueErr, setHasValueErr] = useState("");
+    // const [valueErr, setValueErr] = useState("");
+    // const [hasValueErr, setHasValueErr] = useState("");
     const [hasValueErrP, setHasValueErrP] = useState("");
     // const [hasValueErrQ, setHasValueErrQ] = useState("");
     const [hasValueTamanoUniverso, setHasValueTamanoUniverso] = useState("");
 
-    const [valueQ, setValueQ] = useState(1);
+    // const [valueQ, setValueQ] = useState(1);
     const [valorK, setValorK] = useState(0);
     const [valorA, setValorA] = useState(0);
 
     const handleChange = (e) => {
-        console.log("name ", e.target.id);
-        console.log("input", e.target.value);
-        console.log("aaaaaaaaa");
-
         if (e.target.id === "valueUniverso") {
-            console.log("e.target.id **** ", e.target.id);
             setValueUniverso(e.target.value);
         }
 
         if (e.target.id === "valueP") {
-            console.log("e.target.id **** ", e.target.id);
             setValueP(e.target.value);
         }
     };
 
     const handleSubmit = () => {
-        // if (tipo !== "infinita") {
-        //     calculoMuestrafinita();
-        // } else {
-        //     calculoMuestrainfinita();
-
         if (!isNaN(valueP) && !isNaN(valueUniverso) && valueP && valueUniverso) {
             let valorK = valueUniverso / valueP;
             setValorK(valorK);
@@ -60,12 +43,8 @@ export const FormCalculoSistematico = ({ tipo = "infinita", setMuestra, setN, se
             setA(valA);
         }
 
-        // }
     };
 
-    const styleCustom = {
-        fontSize: "23px",
-    };
 
     const styleCustomErr = {
         color: "red",
@@ -88,7 +67,6 @@ export const FormCalculoSistematico = ({ tipo = "infinita", setMuestra, setN, se
             }
         }
 
-        // console.log("valueP +++++ ", valueP);
     };
     return (
         <>
