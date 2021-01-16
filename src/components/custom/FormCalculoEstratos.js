@@ -113,6 +113,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     };
     const getInputs = () => {
         let rows = [];
+        
         arrayEstratos.map((i, key) => {
             rows.push(
                 <div className="p-field p-col-12 p-md-2">
@@ -123,9 +124,10 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
                             <InputText key={key} id={i.id} type="text" autoComplete="off" readOnly value={valueUniverso - acumTotal} />
                         </div>
                     ) : (
+
                         <div key={i.id} className="p-field">
                             <label htmlFor="index1"># {key}</label>
-                            <InputText key={key} id={i.id} autoComplete="off" type="text" autoComplete="off" onChange={handleChangeArray} />
+                            <InputText key={key} id={i.id} autoFocus={true} autoComplete="off" type="text" autoComplete="off" onChange={handleChangeArray} />
                         </div>
                     )}
                 </div>

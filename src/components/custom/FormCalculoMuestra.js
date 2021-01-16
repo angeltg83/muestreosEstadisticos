@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
+import { TRUE } from "node-sass";
 
 export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesar = true }) => {
     const [dropdownValue, setDropdownValue] = useState(null);
@@ -87,10 +88,19 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
     };
 
     const handleSubmit = () => {
-        if (tipo !== "infinita") {
-            calculoMuestrafinita();
-        } else {
-            calculoMuestrainfinita();
+        let tieneErr = false;
+        if (parseInt(valueP) > 100 || parseInt(valueP) === 0) {
+            setHasValueErrP("El campo debe estar entre 1 y 100");
+            tieneErr = true;
+            return;
+        }
+
+        if (!tieneErr) {
+            if (tipo !== "infinita") {
+                calculoMuestrafinita();
+            } else {
+                calculoMuestrainfinita();
+            }
         }
     };
 
@@ -197,18 +207,18 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
                     </div>
 
                     <div className="p-field p-col-12 p-md-6">
-                        <label htmlFor="prob[Q]">Probabilidad de que ocurra el evento [P]</label>
+                        <label htmlFor="prob[Q]">Probabilidad de exito el evento[P]</label>
                         <InputText id="valueP" type="text" autoComplete="off" onBlur={handleBlur} onChange={handleChange} />
                         <span style={styleCustomErr}>{hasValueErrP}</span>
                     </div>
 
                     <div className="p-field p-col-12 p-md-6">
-                        <label htmlFor="prob[Q]">Probabilidad de que no ocurra el evento [Q]</label>
+                        <label htmlFor="prob[Q]">Probabilidad no exito el evento [Q]</label>
                         {/* <p style={styleProbQ}>{valueQ}</p> */}
                         <InputText id="valueUniverso" type="text" autoComplete="off" value={valueQ} readOnly />
                     </div>
                     <div className="p-field p-col-12 p-md-6">
-                        <label htmlFor="name1">Error máximo</label>
+                        <label htmlFor="name1">Error esperado</label>
                         <Dropdown id="dropdownValueErrorMaximo" value={dropdownValueErrorMaximo} onChange={handleDropChange} options={dropValuesErr} optionLabel="name" placeholder="Seleccione error" />
                     </div>
                     <div className="p-field p-col-12 p-md-6">
