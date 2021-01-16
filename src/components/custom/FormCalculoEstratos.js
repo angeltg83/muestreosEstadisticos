@@ -8,7 +8,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     const [arrayEstratos, setArrayEstratos] = useState([]);
     const [acumTotal, setAcumTotal] = useState(0);
 
-    const [valueNumEstratos, setValueNumEstratos] = useState(1);
+    const [valueNumEstratos, setValueNumEstratos] = useState(0);
     const [hasErrorNumEstratos, setHasErrorNumEstratos] = useState("");
     const [hasValueTamanoUniverso, setHasValueTamanoUniverso] = useState("");
     const [callMuestreoSimple, setCallMuestreoSimple] = useState(false);
@@ -19,6 +19,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
             console.log("e.target.value ", e.target.value);
             if (parseInt(e.target.value) > 0) {
                 setValueNumEstratos(e.target.value);
+                setArrayEstratos([])
             }
         }
 
@@ -31,7 +32,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     const handleSubmit = () => {
         console.log("submit");
         setHasErrorInputs("");
-        let acuEstra = 0;
+        // let acuEstra = 0;
         var flag = 0;
         for (const o of arrayEstratos) {
             if (isNaN(o.value)) {
@@ -40,7 +41,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
                 if (o.value > valueUniverso) {
                     flag = 1;
                 }
-                acuEstra += o.value;
+                // acuEstra += o.value;
             }
         }
 
@@ -84,6 +85,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
                     for (let index = 0; index < valueNumEstratos; index++) {
                         arrEstrat.push({ id: index, value: 0 });
                     }
+                    // console.log("arrEstrat",arrEstrat)
                     setArrayEstratos(arrEstrat);
 
                     setHasErrorNumEstratos("");
@@ -100,7 +102,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
         for (let r of arrayEstratos) {
             console.log("r ", r);
             console.log("e.target.id ", e.target.id);
-            if (e.target.value && r.id == parseInt(e.target.id)) {
+            if (e.target.value && (r.id === parseInt(e.target.id))) {
                 // console.log("\n\n\nentro!!", r);
                 r.value = parseInt(e.target.value);
                 // console.log("rrrrr", r);
@@ -113,21 +115,18 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     };
     const getInputs = () => {
         let rows = [];
-        
         arrayEstratos.map((i, key) => {
             rows.push(
-                <div className="p-field p-col-12 p-md-2">
+                <div key={key} className="p-field p-col-12 p-md-2">
                     {key === arrayEstratos.length - 1 ? (
-                        <div key={i.id} className="p-field">
-                            {/* autoFocus={true} */}
+                        <div key={key} className="p-field">
                             <label htmlFor="index0"># {key}</label>
                             <InputText key={key} id={i.id} type="text" autoComplete="off" readOnly value={valueUniverso - acumTotal} />
                         </div>
                     ) : (
-
-                        <div key={i.id} className="p-field">
+                        <div key={key} className="p-field">
                             <label htmlFor="index1"># {key}</label>
-                            <InputText key={key} id={i.id} autoFocus={true} autoComplete="off" type="text" autoComplete="off" onChange={handleChangeArray} />
+                            <InputText key={key} id={i.id} type="text" autoComplete="off" onChange={handleChangeArray} />
                         </div>
                     )}
                 </div>

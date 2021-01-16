@@ -7,9 +7,9 @@ import { AppTopbar } from "./AppTopbar";
 import { AppFooter } from "./AppFooter";
 import { AppMenu } from "./AppMenu";
 import { AppProfile } from "./AppProfile";
-import { AppConfig } from "./AppConfig";
+// import { AppConfig } from "./AppConfig";
 
-import { Dashboard } from "./components/Dashboard";
+// import { Dashboard } from "./components/Dashboard";
 import { ButtonDemo } from "./components/ButtonDemo";
 import { ChartDemo } from "./components/ChartDemo";
 import { Documentation } from "./components/Documentation";
@@ -39,7 +39,7 @@ import { SpacingDemo } from "./utilities/SpacingDemo";
 import { TextDemo } from "./utilities/TextDemo";
 import { TypographyDemo } from "./utilities/TypographyDemo";
 
-import PrimeReact from "primereact/utils";
+// import PrimeReact from "primereact/utils";
 
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -61,13 +61,13 @@ import {MuestreoSistematico} from "./pages/customs/simple/MuestreoSistematico";
 import {MuestreoEstratificado} from "./pages/customs/simple/MuestreoEstratificado";
 
 const App = () => {
-    const [layoutMode, setLayoutMode] = useState("static");
-    const [layoutColorMode, setLayoutColorMode] = useState("dark");
+    const [layoutMode, ] = useState("static");
+    const [layoutColorMode,] = useState("dark");
     const [staticMenuInactive, setStaticMenuInactive] = useState(false);
     const [overlayMenuActive, setOverlayMenuActive] = useState(false);
     const [mobileMenuActive, setMobileMenuActive] = useState(false);
-    const [inputStyle, setInputStyle] = useState("outlined");
-    const [ripple, setRipple] = useState(false);
+    const [inputStyle,] = useState("outlined");
+    const [ripple,] = useState(false);
     const sidebar = useRef();
     let menuClick = false;
 
@@ -79,22 +79,22 @@ const App = () => {
         }
     }, [mobileMenuActive]);
 
-    const onInputStyleChange = (inputStyle) => {
-        setInputStyle(inputStyle);
-    };
+    // const onInputStyleChange = (inputStyle) => {
+    //     setInputStyle(inputStyle);
+    // };
 
-    const onRipple = (e) => {
-        PrimeReact.ripple = e.value;
-        setRipple(e.value);
-    };
+    // const onRipple = (e) => {
+    //     PrimeReact.ripple = e.value;
+    //     setRipple(e.value);
+    // };
 
-    const onLayoutModeChange = (mode) => {
-        setLayoutMode(mode);
-    };
+    // const onLayoutModeChange = (mode) => {
+    //     setLayoutMode(mode);
+    // };
 
-    const onColorModeChange = (mode) => {
-        setLayoutColorMode(mode);
-    };
+    // const onColorModeChange = (mode) => {
+    //     setLayoutColorMode(mode);
+    // };
 
     const onWrapperClick = (event) => {
         if (!menuClick) {

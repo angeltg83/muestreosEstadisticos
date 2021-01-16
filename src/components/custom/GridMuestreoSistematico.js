@@ -1,48 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
-// // import { Dialog } from "primereact/dialog";
-// import { Button } from "primereact/button";
-// import { InputText } from "primereact/inputtext";
-// import { Dropdown } from "primereact/dropdown";
-// // import { Sidebar } from "primereact/sidebar";
-// // import { Toast } from "primereact/toast";
-// // import { Column } from "primereact/column";
-// // import { DataTable } from "primereact/datatable";
-// // import { OverlayPanel } from "primereact/overlaypanel";
-// // import { ProductService } from '../service/ProductService';
-
+import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { Rating } from "primereact/rating";
-import { Button } from "primereact/button";
-import { Toast } from "primereact/toast";
-import { ProductService } from "../../service/ProductService";
 import { CustomerService } from "../../service/CustomerService";
-import { InputText } from "primereact/inputtext";
-import { ProgressBar } from "primereact/progressbar";
 
-{
-    /* <GridMuestreoSistematico muestra={muestra} getNumAleatorio={getNumAleatorio} /> */
-}
 export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion, nuevaArrPoblacion = [] }) => {
-    // setPoblacion={i} muestra={fin} getNumAleatorio={getNumAleatorio}
     const [customer1, setCustomer1] = useState();
-    // const [customer2, setCustomer2] = useState(null);
-    // const [customer3, setCustomer3] = useState(null);
     const [selectedCustomers1, setSelectedCustomers1] = useState(null);
-    // const [selectedCustomers2, setSelectedCustomers2] = useState(null);
-    // const [globalFilter1, setGlobalFilter1] = useState("");
-    // const [globalFilter2, setGlobalFilter2] = useState("");
     const [loading1, setLoading1] = useState(true);
-    // const [loading2, setLoading2] = useState(true);
-    // const [products, setProducts] = useState(null);
-    // const [expandedRows, setExpandedRows] = useState([]);
-    // const toast = useRef(null);
-    const [idPoblacion, setIdPoblacion] = useState(0);
-    
+
     useEffect(() => {
         console.log("muestra en grid ", muestra);
         console.log("entro form!!", setPoblacion);
-      
+
         const customerService = new CustomerService();
         // const productService = new ProductService();
         // productService.getProductsWithOrdersSmall().then((data) => setProducts(data));
@@ -63,10 +32,6 @@ export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion
                 }
             }
             console.log("fin ", tempData.length);
-            // console.log("idPoblacion ", idPoblacion);
-            // console.log("arr  ", tempData);
-            // setCustomer1(data);
-
             let arrIdPoblacion = [];
             if (tempData.length > 0) {
                 let indexPoblacion = 1;
@@ -75,26 +40,19 @@ export const GridMuestreoSistematico = ({ muestra, getNumAleatorio, setPoblacion
                     arrIdPoblacion.push({ indexPoblacion: indexPoblacion++, ...tempData[x] });
                 }
             }
-console.log("aqui.111")
+            console.log("aqui.111");
             if (nuevaArrPoblacion.length > 0) {
-console.log("aqui.222")
-setCustomer1(nuevaArrPoblacion);
+                console.log("aqui.222");
+                setCustomer1(nuevaArrPoblacion);
                 setPoblacion(arrIdPoblacion);
-
-            } else { 
+            } else {
                 setCustomer1(arrIdPoblacion);
                 setPoblacion(arrIdPoblacion);
             }
 
-           
             setLoading1(false);
         });
-        customerService.getCustomersLarge().then((data) => {
-            // setCustomer2(data);
-            // setLoading2(false);
-        });
-        // customerService.getCustomersMedium().then((data) => setCustomer3(data));
-    }, [muestra]);
+    }, [muestra]);// eslint-disable-next-line
     const nameBodyTemplate = (data) => {
         return (
             <>
@@ -141,11 +99,6 @@ setCustomer1(nuevaArrPoblacion);
                             <Column field="name" header="Nombre" body={nameBodyTemplate}></Column>
                             <Column field="country.name" header="Ciudad" sortable></Column>
                             <Column field="date" header="Montos ventas" sortable body={dateBodyTemplate}></Column>
-                            {/* <Column field="representative.name" header="Asesor comercial" ></Column> */}
-                            {/* <Column selectionMode="multiple" headerStyle={{ width: "3em" }}></Column> */}
-                            {/* <Column field="status" header="Status" sortable body={statusBodyTemplate}></Column> */}
-                            {/* <Column field="activity" header="Activity" sortable body={activityBody}></Column> */}
-                            {/* <Column headerStyle={{ width: "8rem", textAlign: "center" }} bodyStyle={{ textAlign: "center", overflow: "visible" }} body={actionTemplate}></Column> */}
                         </DataTable>
                     </div>
                 </div>

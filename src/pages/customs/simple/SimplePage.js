@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { FormCalculoMuestra } from "../../../components/custom/FormCalculoMuestra";
 
 export const SimplePage = () => {
-    const [muestra, setMuestra] = useState();
+    const [, setMuestra] = useState();
     return (
         <>
             <div className="p-grid overlay-demo">

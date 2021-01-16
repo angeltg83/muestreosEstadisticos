@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
-import { TRUE } from "node-sass";
+// import { TRUE } from "node-sass";s
 
 export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesar = true }) => {
     const [dropdownValue, setDropdownValue] = useState(null);
@@ -140,9 +140,9 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
     const styleCustom = {
         fontSize: "23px",
     };
-    const styleProbQ = {
-        fontSize: "20px",
-    };
+    // const styleProbQ = {
+    //     fontSize: "20px",
+    // };
     const styleCustomErr = {
         color: "red",
         fontSize: "11px",
