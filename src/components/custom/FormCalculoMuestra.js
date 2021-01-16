@@ -222,8 +222,9 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
                         <Dropdown id="dropdownValueErrorMaximo" value={dropdownValueErrorMaximo} onChange={handleDropChange} options={dropValuesErr} optionLabel="name" placeholder="Seleccione error" />
                     </div>
                     <div className="p-field p-col-12 p-md-6">
+                    <label htmlFor="tamanon">Muestra [n]</label>
                         <strong>
-                            <p style={styleCustom}> n: {n}</p>
+                            <p style={styleCustom}>{n}</p>
                         </strong>
                     </div>
                     {botonProcesar ? <Button type="button" label="Procesar" onClick={handleSubmit} icon="pi pi-check" className="p-button-success" /> : ""}
