@@ -3,8 +3,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 
-
-export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesar }) => {
+export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesar = true }) => {
     const [dropdownValue, setDropdownValue] = useState(null);
     const [dropdownValueErrorMaximo, setDropdownValueErrorMaximo] = useState(null);
 
@@ -74,11 +73,9 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
         if (e.target.id === "valueUniverso") {
             console.log("e.target.id **** ", e.target.id);
             setValueUniverso(e.target.value);
-
         }
     };
 
-   
     const handleDropChange = (e) => {
         console.log("handleDropChange", e.target);
         if (e.target.id !== "dropdownValueErrorMaximo") {
@@ -89,7 +86,6 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
         }
     };
 
- 
     const handleSubmit = () => {
         if (tipo !== "infinita") {
             calculoMuestrafinita();
@@ -100,13 +96,14 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
 
     const calculoMuestrainfinita = () => {
         console.log("select ", dropdownValue);
-        console.log(valueP, valueErr, valueQ);
+        console.log(valueP, dropdownValueErrorMaximo.code, valueQ);
 
         console.log("potencia ", dropdownValue.code * dropdownValue.code);
         if (dropdownValue) {
-            let n1 = (Math.pow(dropdownValue.code, 2) * (valueP / 100) * (valueQ / 100)) / Math.pow(valueErr / 100, 2);
+            let n1 = (Math.pow(dropdownValue.code, 2) * (valueP / 100) * (valueQ / 100)) / Math.pow(dropdownValueErrorMaximo.code / 100, 2);
             console.log("n1", n1);
-            const n = Math.round(n * 100) / 100;
+            const n = (Math.round(n1) * 100) / 100;
+            console.log(n);
             setN(n);
         } else {
             setN(0);
@@ -196,7 +193,7 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
                     )}
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="name1">Nivel de confianza [Z]</label>
-                        <Dropdown id="dropdownValue" value={dropdownValue}  autoComplete="off" onChange={handleDropChange} options={dropdownValues} optionLabel="name" placeholder="Seleccione nivel de confianza" />
+                        <Dropdown id="dropdownValue" value={dropdownValue} autoComplete="off" onChange={handleDropChange} options={dropdownValues} optionLabel="name" placeholder="Seleccione nivel de confianza" />
                     </div>
 
                     <div className="p-field p-col-12 p-md-6">
@@ -208,8 +205,7 @@ export const FormCalculoMuestra = ({ tipo = "infinita", setMuestra, botonProcesa
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="prob[Q]">Probabilidad de que no ocurra el evento [Q]</label>
                         {/* <p style={styleProbQ}>{valueQ}</p> */}
-                        <InputText id="valueUniverso" type="text" autoComplete="off" value={valueQ} readOnly  />
-
+                        <InputText id="valueUniverso" type="text" autoComplete="off" value={valueQ} readOnly />
                     </div>
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="name1">Error máximo</label>

@@ -12,15 +12,16 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     const [hasErrorNumEstratos, setHasErrorNumEstratos] = useState("");
     const [hasValueTamanoUniverso, setHasValueTamanoUniverso] = useState("");
     const [callMuestreoSimple, setCallMuestreoSimple] = useState(false);
+
+    const [hasErrorInputs, setHasErrorInputs] = useState("");
     const handleChange = (e) => {
-             if (e.target.id === "valueNumEstratos") {
-            console.log("e.target.value ",e.target.value)
+        if (e.target.id === "valueNumEstratos") {
+            console.log("e.target.value ", e.target.value);
             if (parseInt(e.target.value) > 0) {
                 setValueNumEstratos(e.target.value);
             }
         }
 
-      
         if (e.target.id === "valueUniverso") {
             console.log("e.target.id **** ", e.target.id);
             setValueUniverso(e.target.value);
@@ -29,6 +30,27 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
 
     const handleSubmit = () => {
         console.log("submit");
+        setHasErrorInputs("");
+        let acuEstra = 0;
+        var flag = 0;
+        for (const o of arrayEstratos) {
+            if (isNaN(o.value)) {
+                flag = 1;
+            } else {
+                if (o.value > valueUniverso) {
+                    flag = 1;
+                }
+                acuEstra += o.value;
+            }
+        }
+
+        if (flag) {
+            setHasErrorInputs("Existe algun valor mayor a la población o se ha ingresado caracteres");
+            setCallMuestreoSimple(false);
+            return;
+        }
+        // valueUniverso - acumTotal
+
         setCallMuestreoSimple(true);
     };
 
@@ -51,8 +73,8 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
                     setHasValueTamanoUniverso("Tamaño de la población debe ser mayor a 0");
                 }
             }
-            console.log("entro!!! blur",isNaN(valueNumEstratos))
-            console.log("entro!!! blur valueNumEstratos ",valueNumEstratos )
+            console.log("entro!!! blur", isNaN(valueNumEstratos));
+            console.log("entro!!! blur valueNumEstratos ", valueNumEstratos);
             if (isNaN(valueNumEstratos)) {
                 console.log("No es un num");
                 setHasErrorNumEstratos("El campo debe ser númerico");
@@ -73,7 +95,6 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
     };
 
     const handleChangeArray = (e) => {
-       
         let acTotal = 0;
 
         for (let r of arrayEstratos) {
@@ -90,18 +111,22 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
         console.log("acum ", arrayEstratos);
         setAcumTotal(acTotal);
     };
-      const getInputs = () => {
+    const getInputs = () => {
         let rows = [];
         arrayEstratos.map((i, key) => {
             rows.push(
                 <div className="p-field p-col-12 p-md-2">
                     {key === arrayEstratos.length - 1 ? (
-                        <div key={i.id}>
+                        <div key={i.id} className="p-field">
                             {/* autoFocus={true} */}
+                            <label htmlFor="index0"># {key}</label>
                             <InputText key={key} id={i.id} type="text" autoComplete="off" readOnly value={valueUniverso - acumTotal} />
                         </div>
                     ) : (
-                        <InputText key={key} id={i.id} autoComplete='off' type="text" autoComplete="off" onChange={handleChangeArray} />
+                        <div key={i.id} className="p-field">
+                            <label htmlFor="index1"># {key}</label>
+                            <InputText key={key} id={i.id} autoComplete="off" type="text" autoComplete="off" onChange={handleChangeArray} />
+                        </div>
                     )}
                 </div>
             );
@@ -135,9 +160,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
             if (i.value === 0) {
                 fin = valueUniverso - acumTotal;
             }
-            rows.push(
-                <FormMuestreoAleatorioSimple rowArr={i} muestra={fin} getNumAleatorio={getNumAleatorio} />
-            );
+            rows.push(<FormMuestreoAleatorioSimple rowArr={i} muestra={fin} getNumAleatorio={getNumAleatorio} />);
         });
         return rows;
     };
@@ -151,7 +174,7 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
                     {tipo === "finita" ? (
                         <div className="p-field p-col-12 p-md-6">
                             <label htmlFor="tamanoUniverso">Tamaño de la población o universo [N]</label>
-                            <InputText id="valueUniverso" autoComplete='off' type="text" onBlur={handleBlur} onChange={handleChange} />
+                            <InputText id="valueUniverso" autoComplete="off" type="text" onBlur={handleBlur} onChange={handleChange} />
                             <span style={styleCustomErr}>{hasValueTamanoUniverso}</span>
                         </div>
                     ) : (
@@ -159,10 +182,12 @@ export const FormCalculoEstratos = ({ tipo = "infinita", setMuestra }) => {
                     )}
                     <div className="p-field p-col-12 p-md-6">
                         <label htmlFor="name1">Número de estratos</label>
-                        <InputText id="valueNumEstratos" type="text" autoComplete='off' onBlur={handleBlur} onChange={handleChange} />
+                        <InputText id="valueNumEstratos" type="text" autoComplete="off" onBlur={handleBlur} onChange={handleChange} />
                         <span style={styleCustomErr}>{hasErrorNumEstratos}</span>
                     </div>
                     {valueNumEstratos > 0 ? getInputs() : ""}
+                    <label>{hasErrorInputs}</label>
+
                     <Button type="button" label="Procesar" onClick={handleSubmit} icon="pi pi-check" className="p-button-success" />
                 </div>
             </div>

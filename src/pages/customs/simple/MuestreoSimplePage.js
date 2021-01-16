@@ -9,9 +9,6 @@ export const MuestreoSimplePage = ({ botonProcesar = true, muestraUni = 0 }) => 
 
     useEffect(() => {
         console.log("muestra obtenida", muestra);
-        // const { arrAleatorios } = getNumAleatorio(muestra, 1000, 1049);
-        // setJsonAleatorio(arrAleatorios);
-        // console.log("fin ", arrAleatorios);
     }, [muestra]);
 
     const getNumAleatorio = (muestra, inicio, fin) => {

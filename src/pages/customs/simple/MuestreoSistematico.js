@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import { GridMuestreoSistematico } from "../../../components/custom/GridMuestreoSistematico";
 import { GridMuestreoSistematicoResult } from "../../../components/custom/GridMuestreoSistematicoResult";
-
-// import { FormCalculoMuestra } from "../../../components/custom/FormCalculoMuestra";
 import { FormCalculoSistematico } from "../../../components/custom/FormCalculoSistematico";
 
 export const MuestreoSistematico = ({ botonProcesar = true, muestraUni = 0 }) => {
@@ -15,13 +12,6 @@ export const MuestreoSistematico = ({ botonProcesar = true, muestraUni = 0 }) =>
     const [a, setA] = useState(1);
 
     useEffect(() => {
-        console.log("muestra obtenida", muestra);
-        console.log("muestra obtenida SSS ", arrPoblacion);
-
-        console.log("muestra obtenida [n] ", n);
-        console.log("muestra obtenida [k] ", k);
-        console.log("muestra obtenida [a] ", a);
-
         //generar el nuevo array indexando
         // hay  que seleccionar n registros del arrPoblacion, dando [saltos], iniciando en A
 
@@ -40,9 +30,7 @@ export const MuestreoSistematico = ({ botonProcesar = true, muestraUni = 0 }) =>
             nuevoArrPoblacion.push(arrPoblacion[acumIndex]);
         }
 
-        console.log("\n\n\nnuevoArrPoblacion ", nuevoArrPoblacion);
         if (nuevoArrPoblacion.length > 0 && typeof nuevoArrPoblacion[0] !== "undefined") {
-            console.log("LLLLLL");
             setNuevaArrPoblacion(nuevoArrPoblacion);
         } else {
             setNuevaArrPoblacion([]);
@@ -55,11 +43,7 @@ export const MuestreoSistematico = ({ botonProcesar = true, muestraUni = 0 }) =>
 
         console.log("posi", numPosibilidades);
         for (let index = 0; index < muestra; index++) {
-            // console.log("index ", index);
-            // let i = ;
             let i = Math.floor(Math.random() * numPosibilidades);
-            // console.log(" i ", i);
-            // console.log("result ", inicio + i);
             arrAleatorios.push({ num: i + inicio });
         }
 
